@@ -37,7 +37,7 @@ The Concourse CI server is normally deployed on a remote server that is dedicate
    ```
 
 5.  Navigate to `http://192.168.100.4:8080/` to access the Concourse UI running inside our vagrant machine.  
-    ![Concourse Inital UI](/images/Screen Shot 2016-07-29 at 17.16.18.png)
+    ![Concourse Inital UI](https://raw.githubusercontent.com/neildunlop/simplejava/master/images/Screen%20Shot%202016-07-29%20at%2017.16.18.png)
 
 
 6.  Download the '**Fly CLI**' application for your operating system.  The Fly CLI allows us to manage remote concourse servers from the command line of our local machine.
@@ -219,19 +219,19 @@ Now that we have defined our build pipeline we need to submit it to Concourse be
 
 4.  Open your web browser and navigate to [the Concourse web UI](http://192.168.100.4:8080/).  You should see your new pipeline listed.
 
-	![Concourse Pipeline UI](/Users/IWC-NeilDunlop/Desktop/Screen Shot 2016-07-29 at 23.34.47.png)
+	![Concourse Pipeline UI](https://raw.githubusercontent.com/neildunlop/simplejava/master/images/Screen%20Shot%202016-07-29%20at%2023.34.47.png)
 
 5.  Clicking on the icon at the top left of the screen will open the Pipeline List and show all the pipelines that are currently registered with the server.  Clicking the '**play/pause**' icon to the left of our pipeline will start the pipeline and update the display.
 
-	![Concourse Pipeline Job Started](/Users/IWC-NeilDunlop/Desktop/Screen Shot 2016-07-29 at 23.36.40.png)
+	![Concourse Pipeline Job Started](https://raw.githubusercontent.com/neildunlop/simplejava/master/images/Screen%20Shot%202016-07-29%20at%2023.36.40.png)
 
 6.  Clicking on the **scheduled-maven-package** job in the main workspace will give you access to the running details of the job:
 
-	![Concourse Pipeline Job Running](/Users/IWC-NeilDunlop/Desktop/Screen Shot 2016-07-29 at 23.36.56.png)
+	![Concourse Pipeline Job Running](https://raw.githubusercontent.com/neildunlop/simplejava/master/images/Screen%20Shot%202016-07-29%20at%2023.36.56.png)
 
 7.  Once the job completes, everything goes a lovely green:
 
-	![Concourse Pipeline Job Detail Finished](/Users/IWC-NeilDunlop/Desktop/Screen Shot 2016-07-29 at 23.38.39.png)
+	![Concourse Pipeline Job Detail Finished](https://raw.githubusercontent.com/neildunlop/simplejava/master/images/Screen%20Shot%202016-07-29%20at%2023.38.39.png)
 
-	![Concourse Pipeline Job Started](/Users/IWC-NeilDunlop/Desktop/Screen Shot 2016-07-29 at 23.38.54.png)
+	![Concourse Pipeline Job Started](https://raw.githubusercontent.com/neildunlop/simplejava/master/images/Screen%20Shot%202016-07-29%20at%2023.38.54.png)
  
