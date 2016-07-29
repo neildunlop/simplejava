@@ -37,7 +37,7 @@ The Concourse CI server is normally deployed on a remote server that is dedicate
    ```
 
 5.  Navigate to `http://192.168.100.4:8080/` to access the Concourse UI running inside our vagrant machine.  
-    ![Concourse Inital UI](/Users/IWC-NeilDunlop/Desktop/Screen Shot 2016-07-29 at 17.16.18.png)
+    ![Concourse Inital UI](/images/Screen Shot 2016-07-29 at 17.16.18.png)
 
 
 6.  Download the '**Fly CLI**' application for your operating system.  The Fly CLI allows us to manage remote concourse servers from the command line of our local machine.
