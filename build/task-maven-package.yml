@@ -1,6 +1,8 @@
 ---
 platform: linux
 
+#define the base docker image used to build the container that will host this task while it executes.
+#Alpine Linux with Java 8 and Maven 3.3
 image_resource:
   type: docker-image
   source:
@@ -10,6 +12,7 @@ image_resource:
 inputs:
   - name: git-repo
 
+#execute mvn package against the target pom
 run:
   path: mvn
   args: ["-f", "git-repo/pom.xml", "-DskipTests=false", "package"]

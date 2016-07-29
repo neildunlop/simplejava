@@ -1,17 +1,22 @@
 ---
+#define the resources that are available as inputs to jobs.
 resources:
+#GitHub repository that holds all the code that makes up our application
   - name: git-repo
     type: git
     source:
       uri: https://github.com/neildunlop/simplejava.git
       branch: master
+#A simple timer resource that ensures our project gets build every 60 seconds - could be smarter.
   - name: time
     type: time
     source:
       interval: 60s
 
+#The things that we want our concourse server to do.
 jobs:
-  - name: maven-package
+#User maven to compile our code, run test and make a JAR.
+  - name: scheduled-maven-package
     plan:
     - aggregate:
       - get: git-repo
@@ -20,5 +25,5 @@ jobs:
     - task: maven-package
       privileged: true
       file: git-repo/build/task-maven-package.yml
-    - task: rename-file
-      file: git-repo/build/task-rename-file.yml
+#    - task: rename-file
+#      file: git-repo/build/task-rename-file.yml
