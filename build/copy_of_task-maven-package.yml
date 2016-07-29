@@ -1,0 +1,19 @@
+---
+#A task to run our tests inside a docker contain with alpine linux and Java 8 installed
+#See https://concourse.ci/running-tasks.html
+platform: linux
+
+image_resource:
+  #note there is no name - becuase this resource can only ever referenced in this file(?)
+  type: docker-image
+  source:
+    repository: docker pull jeanblanchard/java
+    tag: '8'
+
+inputs:
+- name: git-repo
+
+run:
+  path: mvn
+  args: ["-f", "git-repo/pom.xml", "-DskipTests=false", "package"]
+  #args: ["-f", "git-repo/pom.xml", "-DskipTests=false", "test"]

@@ -1,0 +1,24 @@
+---
+resources:
+  - name: git-repo
+    type: git
+    source:
+      uri: https://github.com/neildunlop/simplejava.git
+      branch: master
+  - name: time
+    type: time
+    source:
+      interval: 60s
+
+jobs:
+  - name: maven-package
+    plan:
+    - aggregate:
+      - get: git-repo
+        trigger: true
+      - get: time
+    - task: maven-package
+      privileged: true
+      file: git-repo/build/task-maven-package.yml
+    - task: rename-file
+      file: git-repo/build/task-rename-file.yml

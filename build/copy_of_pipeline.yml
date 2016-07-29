@@ -1,0 +1,30 @@
+---
+resources:
+#The code that we want to build and test - pulls from github - also contains our build pipeline definition (aka this file!)
+  - name: git-repo
+    type: git
+    source:
+      uri: https://github.com/neildunlop/simplejava.git
+      branch: master
+#A timer reosource that triggers every 60 seconds
+  - name: time
+    type: time
+    source:
+      interval: 60s
+
+jobs:
+  - name: maven-package
+    #The thigs that are done in the job..
+    plan:
+    #Denotes that we need these two inputs before the tasks fire..
+    - aggregate:
+      - get: git-repo
+        trigger: true
+      - get: time
+    #Task that runs executes a task defined in an external file (run maven package - ie, build)
+    - task: maven-package
+      privileged: true
+      file: git-repo/build/task-maven-package.yml
+    #Task that runs executes a task defined in an external file (rename a file)
+    - task: rename-file
+      file: git-repo/build/task-rename-file.yml
