@@ -5,8 +5,8 @@ resources:
   - name: git-repo
     type: git
     source:
-      uri: https://github.com/neildunlop/simplejava.git
-      branch: master
+      uri: {{github-uri}}
+      branch: {{github-branch}}
 #A simple timer resource that ensures our project gets build every 60 seconds - could be smarter.
   - name: time
     type: time
