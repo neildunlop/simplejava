@@ -89,19 +89,3 @@ Now that we have enhanced our build pipeline we need to submit it to Concourse b
 3.  You'll be asked if you want to apply the configuration.  Enter **'Y'**.
 
 4.  Open your web browser and navigate to [the Concourse web UI](http://192.168.100.4:8080/).  You should see your new pipeline listed.
-
-
-
-We tell the build pipeline which properties file to use by using
-
-`fly set-pipeline` with the `-l` or `--load-vars-from` argument.  The value should be the path the properties file you want to use.
- (Not sure what the point of that is really - you are uploading two files instead of one... why not just change the build pipeline directly?  I guess it makes the pipeline less reuseable?
-
-
-
-For later...
-Deploying our App for manual testing
-------------------------------------
-We can use the Concourse PUT element to push a resource to a location.. in our case we could use PUT to take the results of our build with passing automated tests and push it to a staging environment for more testing.
-If we Dockerise the ouput of the build then this could kick of integration tests..
-See https://concourse.ci/put-step.html
