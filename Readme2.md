@@ -89,3 +89,5 @@ Now that we have enhanced our build pipeline we need to submit it to Concourse b
 3.  You'll be asked if you want to apply the configuration.  Enter **'Y'**.
 
 4.  Open your web browser and navigate to [the Concourse web UI](http://192.168.100.4:8080/).  You should see your new pipeline listed.
+
+5.  Clicking on the icon at the top left of the screen will open the Pipeline List and show all the pipelines that are currently registered with the server.  Clicking the '**play/pause**' icon to the left of our pipeline will start the pipeline and update the display.

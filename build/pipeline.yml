@@ -7,23 +7,17 @@ resources:
     source:
       uri: {{github-uri}}
       branch: {{github-branch}}
-#A simple timer resource that ensures our project gets build every 60 seconds - could be smarter.
-  - name: time
-    type: time
-    source:
-      interval: 60s
+
 
 #The things that we want our concourse server to do.
 jobs:
-#User maven to compile our code, run test and make a JAR.
-  - name: scheduled-maven-package
+  - name: unit-test
+    public: true
     plan:
-    - aggregate:
       - get: git-repo
         trigger: true
-      - get: time
-    - task: maven-package
-      privileged: true
-      file: git-repo/build/task-maven-package.yml
-#    - task: rename-file
-#      file: git-repo/build/task-rename-file.yml
+      - task: unit
+        file: simplejava/build/tasks/task-unit-test.yml
+        params: &MAVENPARAMS
+          MAVEN_OPTS: {{maven-opts}}
+          MAVEN_CONFIG: {{maven-config}}

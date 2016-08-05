@@ -1,0 +1,22 @@
+---
+platform: linux
+
+#define the base docker image used to build the container that will host this task while it executes.
+#Alpine Linux with Java 8 and Maven 3.3
+image_resource:
+  type: docker-image
+  source:
+    repository: andreptb/maven
+    tag: 'latest'
+
+params:
+  MAVEN_OPTS:
+  MAVEN_CONFIG:
+
+inputs:
+  - name: git-repo
+
+#execute mvn package against the target pom
+run:
+  path: simplejava/build/tasks/unit-test.sh
+  args: [--input-dir, simplejava]
