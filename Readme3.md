@@ -169,3 +169,33 @@ With all our supporting files created we can now add a job to our pipeline to ac
 	          MAVEN_CONFIG: {{maven-config}}
     ```
 Note the YAML `anchor` (&MAVENPARAMS) that allows us to name and then reuse a block of YAML content.  In this case we have named our Maven parameters so that is easier to reuse those settings elsewhere in our pipeline.  See [the official YAML tutorial](https://learnxinyminutes.com/docs/yaml/) for more details.
+
+
+###Executing our Build Pipeline
+Now that we have defined our build pipeline we need to submit it to Concourse before we can do anything with it.  
+
+1.  Ensure you are in the '**build**' directory we created earlier.
+
+2.  Commit it to the concourse server with:
+
+	```
+	fly -t myconcourse set-pipeline -p simple-java-build-pipeline -c pipeline.yml -l ./properties/simplejava-github-properties.yml
+	```
+	**-t** specifies the target Concourse.  We use the convienient alias we setup earlier.
+	
+	**-p** specifies the name we want to give our newly created pipeline.
+	
+	**-c** specifies the content file that we want to upload.
+	
+	**-l** specifies the properties file we want to use to provide values for all the properties placeholders we have used.
+
+3.  You'll be asked if you want to apply the configuration.  Enter **'Y'**.
+
+4.  Open your web browser and navigate to [the Concourse web UI](http://192.168.100.4:8080/).  You should see your new pipeline listed.
+
+
+Supporting resources:
+
+https://www.youtube.com/watch?v=YntGTVjAOsY - video of setting up a Java build pipline (details about maven settings etc)
+http://pcf-hugo-workshop.cfapps.io/2016/03/15/lab-6-build-pipelines-using-concourse.ci/ (overview of putting a pipeline together... scroll down to section 2 for a good example pipeline)
+https://github.com/rjain-pivotal/PCF-demo - An actual fully featured pipeline

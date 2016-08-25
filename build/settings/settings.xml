@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+ <servers>
+   <server>
+     <id>nexus</id>
+     <username>admin</username>
+     <password>admin123</password>
+   </server>
+ </servers>
+ <mirrors>
+   <mirror>
+     <id>nexus</id>
+     <mirrorOf>*</mirrorOf>
+     <name>Nexus</name>
+     <url>http://52.31.122.158:8081/content/groups/public</url>
+   </mirror>
+ </mirrors>
+ <profiles>
+   <profile>
+         
+     <id>default</id>
+         
+     <repositories>
+       <repository>
+         <id>central</id>
+         <url>http://central</url>
+         <releases>
+           <enabled>true</enabled>
+         </releases>
+         <snapshots>
+           <enabled>true</enabled>
+         </snapshots>
+       </repository>
+     </repositories>
+     <pluginRepositories>
+       <pluginRepository>
+                    
+         <id>central</id>
+                      
+         <url>http://central</url>
+                      
+         <releases>
+           <enabled>true</enabled>
+         </releases>
+                      
+         <snapshots>
+           <enabled>true</enabled>
+         </snapshots>
+       </pluginRepository>
+     </pluginRepositories>
+   </profile>
+   <profile>
+     <id>iwnexus</id>
+     <activation>
+       <activeByDefault>true</activeByDefault>
+     </activation>
+     <properties>
+       <repo.hostname>52.31.122.158:8081</repo.hostname>
+       <repo.release.url>http://${repo.hostname}/content/repositories/releases</repo.release.url>
+       <repo.release.id>nexus</repo.release.id>
+       <repo.snapshot.url>http://${repo.hostname}/content/repositories/snapshots</repo.snapshot.url>
+       <repo.snapshot.id>nexus</repo.snapshot.id>
+       <repo.snapshot.unique.version>false</repo.snapshot.unique.version>
+     </properties>
+   </profile>
+ </profiles>
+ <activeProfiles>
+   <activeProfile>default</activeProfile>
+ </activeProfiles>
+</settings>

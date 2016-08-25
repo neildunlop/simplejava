@@ -196,7 +196,7 @@ The '**run**' element is where we actually do the work.  This allows us to essen
 	mvn -f git-repo/pom.xml -DskipTests=false package
 ```
 	
-If you know your maven says that we want to package the application defined in the top level pom of our git-repo resource and we want to make sure the tests are run.
+If you know your maven, this says that we want to package the application defined in the top level pom of our git-repo resource and we want to make sure the tests are run.
 
 
 ###Executing our Build Pipeline
@@ -207,7 +207,7 @@ Now that we have defined our build pipeline we need to submit it to Concourse be
 2.  Commit it to the concourse server with:
 
 	```
-	fly -t myconcourse set-pipeline -p simple-java-build-pipeline -c pipeline.yml
+	fly -t myconcourse set-pipeline -p simple-java-build-pipeline -c pipeline.yml -l ./properties/simplejava-github-properties.yml
 	```
 	**-t** specifies the target Concourse.  We use the convienient alias we setup earlier.
 	

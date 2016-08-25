@@ -1,2 +1,4 @@
 github-uri: https://github.com/neildunlop/simplejava.git
 github-branch: master
+maven-opts: # -Xms256m -Xmx512m
+maven-config: # -s ../settings/settings.xml
