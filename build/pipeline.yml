@@ -17,7 +17,7 @@ jobs:
       - get: git-repo
         trigger: true
       - task: unit
-        file: simplejava/build/tasks/task-unit-test.yml
+        file: git-repo/build/tasks/task-unit-test.yml
         params: &MAVENPARAMS
           MAVEN_OPTS: {{maven-opts}}
           MAVEN_CONFIG: {{maven-config}}

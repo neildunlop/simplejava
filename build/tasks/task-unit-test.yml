@@ -18,5 +18,5 @@ inputs:
 
 #execute mvn package against the target pom
 run:
-  path: simplejava/build/tasks/unit-test.sh
-  args: [--input-dir, simplejava]
+  path: git-repo/build/tasks/unit-test.sh
+  args: [--input-dir, git-repo]
