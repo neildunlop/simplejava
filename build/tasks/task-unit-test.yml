@@ -18,5 +18,5 @@ inputs:
 
 #execute mvn package against the target pom
 run:
-  path: git-repo/build/tasks/unit-test.sh
+  path: git-repo/build/tasks/task-unit-test.sh
   args: [--input-dir, git-repo]
