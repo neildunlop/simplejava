@@ -10,18 +10,6 @@ resources:
 
 #Github repo that holds our application version number information - gets updated when we build a release candidate
 #(How do we keep this in line with the actual code?)
-  # - name: version
-  #     type: semver
-  #     source:
-  #       bucket: {{s3-bucket-version}}
-  #       initial_version: 1.0.0-rc.0
-  #       key: current-version
-  #       access_key_id: {{s3-access-key-id}}
-  #       secret_access_key: {{s3-secret-access-key}}
-  #       endpoint: {{s3-endpoint}}
-
-#Github repo that holds our application version number information - gets updated when we build a release candidate
-#(How do we keep this in line with the actual code?)
   - name: version
     type: semver
     source:
