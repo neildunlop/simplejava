@@ -17,7 +17,6 @@ resources:
       uri: {{github-uri}}
       branch: version
       file: version
-      #private_key: {{concourse-repo-private-key}}
       initial_version: 1.0.0-rc.0
         
 
