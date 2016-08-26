@@ -8,6 +8,31 @@ resources:
       uri: {{github-uri}}
       branch: {{github-branch}}
 
+#Github repo that holds our application version number information - gets updated when we build a release candidate
+#(How do we keep this in line with the actual code?)
+  # - name: version
+  #     type: semver
+  #     source:
+  #       bucket: {{s3-bucket-version}}
+  #       initial_version: 1.0.0-rc.0
+  #       key: current-version
+  #       access_key_id: {{s3-access-key-id}}
+  #       secret_access_key: {{s3-secret-access-key}}
+  #       endpoint: {{s3-endpoint}}
+
+#Github repo that holds our application version number information - gets updated when we build a release candidate
+#(How do we keep this in line with the actual code?)
+  - name: version
+    type: semver
+    source:
+      driver: git
+      uri: {{github-uri}}
+      branch: version
+      file: version
+      #private_key: {{concourse-repo-private-key}}
+      initial_version: 1.0.0-rc.0
+        
+
 
 #The things that we want our concourse server to do.
 jobs:
@@ -21,3 +46,20 @@ jobs:
         params: &MAVENPARAMS
           MAVEN_OPTS: {{maven-opts}}
           MAVEN_CONFIG: {{maven-config}}
+
+  - name: build-artifact
+      serial_groups: [ version ]
+      plan:
+        - get: git-repo
+          passed: [ unit-test ]
+          trigger: true
+        - get: version
+          params: { pre: rc }
+        - task: build
+          file: git-repo/build/tasks/build.yml
+          params:
+            <<: *MAVENPARAMS
+        - put: candidate-release
+          params: { file: build/simplejava-*.jar }
+        - put: version
+          params: { file: version/number }
