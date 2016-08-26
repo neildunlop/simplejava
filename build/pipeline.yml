@@ -35,18 +35,18 @@ jobs:
           MAVEN_CONFIG: {{maven-config}}
 
   - name: build-artifact
-      serial_groups: [ version ]
-      plan:
-        - get: git-repo
-          passed: [ unit-test ]
-          trigger: true
-        - get: version
-          params: { pre: rc }
-        - task: build
-          file: git-repo/build/tasks/build.yml
-          params:
-            <<: *MAVENPARAMS
-        - put: candidate-release
-          params: { file: build/simplejava-*.jar }
-        - put: version
-          params: { file: version/number }
+    serial_groups: [ version ]
+    plan:
+      - get: git-repo
+        passed: [ unit-test ]
+        trigger: true
+      - get: version
+        params: { pre: rc }
+      - task: build
+        file: git-repo/build/tasks/build.yml
+        params:
+          <<: *MAVENPARAMS
+      - put: candidate-release
+        params: { file: build/simplejava-*.jar }
+      - put: version
+        params: { file: version/number }
