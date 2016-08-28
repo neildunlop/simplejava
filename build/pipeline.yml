@@ -16,6 +16,7 @@ resources:
       uri: https://github.com/neildunlop/simplejava.git
       branch: version
       file: version
+      initial_verison: 0.0.1
       
 
 #This is how we tell concourse where we want to push candidate releases (ie, builds that have passed unit testing and are ready to have
