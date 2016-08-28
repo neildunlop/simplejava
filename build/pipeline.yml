@@ -16,7 +16,7 @@ resources:
       uri: git@github.com:neildunlop/simplejava.git
       branch: version
       file: version
-      private_key: {{concourse-repo-private-key}}
+      
 
 #This is how we tell concourse where we want to push candidate releases (ie, builds that have passed unit testing and are ready to have
 #integration tests run on it - but I'm too tired to try it out...not setup s3 yet..)    
