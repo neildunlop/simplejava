@@ -19,7 +19,7 @@ outputs:
   - name: build
 
 run:
-  path: git-repo/build/tasks/build.sh
+  path: git-repo/build/tasks/task-build.sh
   args: [
     --input-dir, git-repo,
     --output-dir, built,
