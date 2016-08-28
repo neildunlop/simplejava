@@ -9,8 +9,7 @@ resources:
       branch: {{github-branch}}
 
 #S3 Bucket that holds our application version number information - gets updated when we build a release candidate - How do we keep this in line with the actual code?
-
-- name: version
+  - name: version
     type: semver
     source:
       bucket: {{s3-versions-bucket}}
@@ -19,6 +18,7 @@ resources:
       access_key_id: {{s3-access-key-id}}
       secret_access_key: {{s3-secret-access-key}}
       endpoint: {{s3-endpoint}}
+      region_name: Ireland
     
   #This is how we tell concourse where we want to push candidate releases (ie, builds that have passed unit testing and are ready to have
   #integration tests run on it - but I'm too tired to try it out...not setup s3 yet..)    
@@ -30,6 +30,7 @@ resources:
       access_key_id: {{s3-access-key-id}}
       secret_access_key: {{s3-secret-access-key}}
       endpoint: {{s3-endpoint}}
+      region_name: Ireland
 
 
 #The things that we want our concourse server to do.
