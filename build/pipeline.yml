@@ -18,6 +18,7 @@ resources:
       key: current-version
       access_key_id: {{s3-access-key-id}}
       secret_access_key: {{s3-secret-access-key}}
+      region_name: eu-west-1
       
 
 #This is how we tell concourse where we want to push candidate releases (ie, builds that have passed unit testing and are ready to have
