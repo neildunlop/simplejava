@@ -12,13 +12,11 @@ resources:
   - name: version
     type: semver
     source:
-      bucket: {{s3-versions-bucket}}
-      initial_version: 1.0.0-rc.0
-      key: current-version
-      access_key_id: {{s3-access-key-id}}
-      secret_access_key: {{s3-secret-access-key}}
-      endpoint: {{s3-endpoint}}
-      region_name: eu-west-1
+      driver: git
+      uri: git@github.com:neildunlop/simplejava.git
+      branch: version
+      file: version
+      private_key: {{concourse-repo-private-key}}
 
 #This is how we tell concourse where we want to push candidate releases (ie, builds that have passed unit testing and are ready to have
 #integration tests run on it - but I'm too tired to try it out...not setup s3 yet..)    
