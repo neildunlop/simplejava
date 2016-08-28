@@ -8,7 +8,7 @@ resources:
       uri: {{github-uri}}
       branch: {{github-branch}}
 
-#S3 Bucket that holds our application version number information - gets updated when we build a release candidate - How do we keep this in line with the actual code?
+#S3 Bucket that holds our application version number information - gets updated when we build a release candidate
   - name: version
     type: semver
     source:
