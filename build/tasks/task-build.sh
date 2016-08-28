@@ -54,6 +54,7 @@ if [ -z "$packaging" ]; then
 fi
 
 version=`cat $versionFile`
+echo "version is " $version
 artifactName="${artifactId}-${version}.${packaging}"
 
 cd $inputDir
