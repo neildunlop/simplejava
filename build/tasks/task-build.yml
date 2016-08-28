@@ -22,7 +22,7 @@ run:
   path: git-repo/build/tasks/task-build.sh
   args: [
     --input-dir, git-repo,
-    --output-dir, built,
+    --output-dir, build,
     --version-file, version/number,
     --artifactId, simplejava,
     --packaging, jar
