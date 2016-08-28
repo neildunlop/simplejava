@@ -13,7 +13,7 @@ resources:
     type: semver
     source:
       driver: git
-      uri: git@github.com:neildunlop/simplejava.git
+      uri: https://github.com/neildunlop/simplejava.git
       branch: version
       file: version
       
