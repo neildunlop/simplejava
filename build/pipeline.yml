@@ -12,11 +12,12 @@ resources:
   - name: version
     type: semver
     source:
-      driver: git
-      uri: https://github.com/neildunlop/simplejava.git
-      branch: version
-      file: version
-      initial_verison: 0.0.1
+      driver: s3
+      bucket: {{s3-versions-bucket}}
+      initial_version: 1.0.0-rc.0
+      key: current-version
+      access_key_id: {{s3-access-key-id}}
+      secret_access_key: {{s3-secret-access-key}}
       
 
 #This is how we tell concourse where we want to push candidate releases (ie, builds that have passed unit testing and are ready to have
