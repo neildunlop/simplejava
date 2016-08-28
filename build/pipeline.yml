@@ -8,17 +8,28 @@ resources:
       uri: {{github-uri}}
       branch: {{github-branch}}
 
-#Github repo that holds our application version number information - gets updated when we build a release candidate
+#S3 Bucket that holds our application version number information - gets updated when we build a release candidate
 #(How do we keep this in line with the actual code?)
-  - name: version
+- name: version
     type: semver
     source:
-      driver: git
-      uri: {{github-uri}}
-      branch: version
-      file: version
+      bucket: {{s3-bucket-version}}
       initial_version: 1.0.0-rc.0
-        
+      key: current-version
+      access_key_id: {{s3-access-key-id}}
+      secret_access_key: {{s3-secret-access-key}}
+      endpoint: {{s3-endpoint}}
+    
+  #This is how we tell concourse where we want to push candidate releases (ie, builds that have passed unit testing and are ready to have
+  #integration tests run on it - but I'm too tired to try it out...not setup s3 yet..)    
+  - name: candidate-release
+    type: s3
+    source:
+      bucket: {{s3-bucket-release-candidates}}
+      regexp: simplejava-(.*).jar
+      access_key_id: {{s3-access-key-id}}
+      secret_access_key: {{s3-secret-access-key}}
+      endpoint: {{s3-endpoint}}
 
 
 #The things that we want our concourse server to do.
