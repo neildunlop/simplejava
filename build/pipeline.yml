@@ -53,10 +53,12 @@ jobs:
       - get: version
         params: { pre: rc }
       - task: build
-        file: git-repo/build/tasks/build.yml
+        file: git-repo/build/tasks/task-build.yml
         params:
           <<: *MAVENPARAMS
       - put: candidate-release
         params: { file: build/simplejava-*.jar }
       - put: version
         params: { file: version/number }
+
+
