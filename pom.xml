@@ -19,10 +19,21 @@
 	</parent>
 
 	<properties>
+        <finalName>simplejava</finalName>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 	</properties>
+
+	<profiles>
+		<profile>
+			<id>ci</id>
+			<properties>
+				<versionNumber>${project.version}</versionNumber>
+				<finalName>${project.artifactId}-${versionNumber}</finalName>
+			</properties>
+		</profile>
+	</profiles>
 
 	<dependencies>
 		<dependency>
