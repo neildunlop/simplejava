@@ -32,6 +32,16 @@ resources:
       secret_access_key: {{s3-secret-access-key}}
       region_name: eu-west-1
 
+#Cloud Formation host that we will use as an integration environment for our application.. not sure how this works yet.
+  - name: cf
+    type: cf
+    source:
+      api: {{cf-api}}
+      username: {{cf-username}}
+      password: {{cf-password}}
+      organization: {{cf-org}}
+      space: {{cf-space}}
+      skip_cert_check: true
 
 #The things that we want our concourse server to do.
 jobs:
