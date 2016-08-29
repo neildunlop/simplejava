@@ -35,6 +35,7 @@ resources:
 
 #The things that we want our concourse server to do.
 jobs:
+  #run all the unit tests against our code base - no need to save the results, not other step will run unless this step has passed.
   - name: unit-test
     public: true
     plan:
@@ -46,6 +47,7 @@ jobs:
           MAVEN_OPTS: {{maven-opts}}
           MAVEN_CONFIG: {{maven-config}}
 
+  #build a candidate release version of our code, update the version number and store the resulting files in S3 so we can get to them later if needed.
   - name: build-artifact
     serial_groups: [ version ]
     plan:
@@ -62,5 +64,28 @@ jobs:
         params: { file: build/simplejava-*.jar }
       - put: version
         params: { file: version/number }
+
+  #take a previously build candidate release version from S3, prepare the integration environment (?) and then run the integration step.
+  - name: integration-test
+    serial: true
+    plan:
+      - get: candidate-release
+        trigger: true
+        passed: [ build-artifact ]
+      - get: git-repo
+        passed: [ build-artifact ]
+      - get: version
+        passed: [ build-artifact ]
+      - task: prepare-integration
+        file: git-repo/build/tasks/task-prepare-integration.yml
+        params:
+          CF_MANIFEST_HOST: {{cf-manifest-host}}
+      - put: cf
+        params:
+          manifest: prepare-integration/manifest.yml
+      - task: integration
+        file: git-repo/build/tasks/task-integration.yml
+        params:
+          <<: *MAVENPARAMS
 
 

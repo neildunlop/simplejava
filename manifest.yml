@@ -1,0 +1,7 @@
+---
+applications:
+- name: nd-simplejava
+  memory: 512M 
+  instances: 1
+  host: nd-simplejava
+  path: ./target/simplejava.jar

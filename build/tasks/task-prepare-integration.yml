@@ -1,0 +1,30 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: andreptb/maven
+    tag: 'latest'
+
+params:
+  CF_MANIFEST_HOST:
+
+inputs:
+  - name: git-repo
+  - name: candidate-release
+  - name: version
+
+outputs:
+  - name: prepare-integration
+
+run:
+  path: git-repo/build/tasks/task-prepare-integration.sh
+  args: [
+    --input-dir, candidate-release,
+    --output-dir, prepare-integration,
+    --version-file, version/number,
+    --input-manifest, git-repo/manifest.yml,
+    --artifactId, simplejava,
+    --packaging, jar
+  ]
